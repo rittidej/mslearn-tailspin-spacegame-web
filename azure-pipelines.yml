@@ -54,10 +54,11 @@ steps:
     arguments: '--no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
     zipAfterPublish: true
 
-- task: whitesource.ws-bolt.bolt.wss.WhiteSource Bolt@20
-  displayName: 'Run WhiteSource Bolt'
+- task: WhiteSource@21
   inputs:
-      cwd: '$(Pipeline.Workspace)'
+    cwd: '$(System.DefaultWorkingDirectory)'
+    projectName: 'spacegame web''
+  
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
