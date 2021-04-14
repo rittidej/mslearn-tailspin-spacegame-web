@@ -54,10 +54,10 @@ steps:
     arguments: '--no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
     zipAfterPublish: true
 
-- task: WhiteSource Bolt@20 # Add the WhiteSource extension from Azure Devops Marketplace
-            inputs:
-              cwd: '$(Build.SourcesDirectory)'
-              advance: true
+- task: whitesource.ws-bolt.bolt.wss.WhiteSource Bolt@20
+  displayName: 'Run WhiteSource Bolt'
+  inputs:
+      cwd: '$(Pipeline.Workspace)'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
